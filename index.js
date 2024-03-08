@@ -609,6 +609,9 @@ const useLocalStorageSubscribe = (callback) => {
   return () => window.removeEventListener("storage", callback);
 };
 
+const getLocalStorageServerSnapshot = () => {
+  return ''
+};
 
 export function useLocalStorage(key, initialValue) {
   const getSnapshot = () => getLocalStorageItem(key);
@@ -616,7 +619,7 @@ export function useLocalStorage(key, initialValue) {
   const store = React.useSyncExternalStore(
     useLocalStorageSubscribe,
     getSnapshot,
-    () => ''
+    getLocalStorageServerSnapshot
   );
 
   const setState = React.useCallback(
