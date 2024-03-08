@@ -609,17 +609,13 @@ const useLocalStorageSubscribe = (callback) => {
   return () => window.removeEventListener("storage", callback);
 };
 
-const getLocalStorageServerSnapshot = () => {
-  throw Error("useLocalStorage is a client-only hook");
-};
 
 export function useLocalStorage(key, initialValue) {
   const getSnapshot = () => getLocalStorageItem(key);
 
   const store = React.useSyncExternalStore(
     useLocalStorageSubscribe,
-    getSnapshot,
-    getLocalStorageServerSnapshot
+    getSnapshot
   );
 
   const setState = React.useCallback(
