@@ -615,7 +615,8 @@ export function useLocalStorage(key, initialValue) {
 
   const store = React.useSyncExternalStore(
     useLocalStorageSubscribe,
-    getSnapshot
+    getSnapshot,
+    () => ''
   );
 
   const setState = React.useCallback(
